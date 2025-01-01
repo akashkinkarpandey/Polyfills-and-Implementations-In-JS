@@ -1,3 +1,5 @@
+//We need to create our own localStorage object which will have the same methods as the actual localStorage object and also have expiry with key-value pairs 
+ 
 //attaching our localStorage object to window (globalThis) will help us to access it globally
 window.myLocalStorage={
     //setItem takes an expiry too apart from key,value as a parameter
