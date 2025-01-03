@@ -1,6 +1,5 @@
 //we need to create a custom implementation of Promise.all 
 //Promise.all takes an array of promises and returns a promise that resolves when all of the promises in the argument have resolved or rejects with the reason of the first passed promise that rejects.
-
 Promise.customPromiseAll=async function(arrayOfPromises){
     let resultArray=[]
     let noOfResolvedPromises=0
