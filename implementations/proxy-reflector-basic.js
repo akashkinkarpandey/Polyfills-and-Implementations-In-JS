@@ -10,7 +10,7 @@ const proxyObj=new Proxy(
         get(target,property){
             console.log({target,property});
             if(property in target)
-                return target[property];
+                return Reflect.get(target,property);
             return false;
         },
         set(target,property,value){
@@ -28,7 +28,8 @@ const proxyObj=new Proxy(
                             throw new Error(`Invalid value for ${property}`)
                         break;
                 }
-                target[property] = value;
+                Reflect.set(target, property, value);
+                //target[property] = value;
             }
         }
     }
