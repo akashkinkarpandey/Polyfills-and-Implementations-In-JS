@@ -87,3 +87,35 @@ const allToBeRejectedPromises = [
 myPromiseAny(
   allToBeRejectedPromises
 );
+//uncomment the below arrays one at a time and put into the functions myPromiseAll,nativePromiseAll to see the output
+// const allToBeResolvedPromises = [
+//   resolveOnlyPromise(3),
+//   resolveOnlyPromise(2),
+//   resolveOnlyPromise(5),
+//   resolveOnlyPromise(4),
+// ];
+const allToBeRejectedPromises = [
+  rejectOnlyPromise(3),
+  rejectOnlyPromise(2),
+  rejectOnlyPromise(5),
+  rejectOnlyPromise(4),
+];
+// const allMixedPromises1 = [
+//   resolveOnlyPromise(1),
+//   rejectOnlyPromise(2),
+//   resolveOnlyPromise(3),
+// ];
+// const allMixedPromises2 = [
+//   resolveOnlyPromise(3),
+//   resolveOnlyPromise(4),
+//   rejectOnlyPromise(2),
+// ];
+// const allMixedPromises3 = [
+//   rejectOnlyPromise(3),
+//   resolveOnlyPromise(4),
+//   rejectOnlyPromise(2),
+// ];
+// nativePromiseAll(allToBeResolvedPromises);
+myPromiseAny(
+  allToBeRejectedPromises
+);
