@@ -21,8 +21,12 @@ Promise.customPromiseAll=function(arrayOfPromises){
     return p
 }
 async function myPromiseAll(arrayOfPromises) {
-    const result=await Promise.customPromiseAll(arrayOfPromises)
-    console.log(result);
+    try {
+        const result=await Promise.customPromiseAll(arrayOfPromises)
+        console.log(result);
+    } catch (error) {
+        console.log(error);
+    }
 }
 async function nativePromiseAll(arrayOfPromises){
     const result=await Promise.all(arrayOfPromises)
