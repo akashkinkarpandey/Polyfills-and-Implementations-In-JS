@@ -2,7 +2,7 @@
 //It takes an array of promises as argument
 //It returns a promise that resolves or rejects as soon as one of the promises in the argument resolves or rejects
 //uncomment the below arrays one at a time and put into the functions myPromiseAll,nativePromiseAll to see the output
-Promise.customPromiseRace = async function (arrayOfPromises) {
+Promise.customPromiseRace = function (arrayOfPromises) {
   const p = new Promise((resolve, reject) => {
     arrayOfPromises.forEach((individualPromise, index) => {
       individualPromise

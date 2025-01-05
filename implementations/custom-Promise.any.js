@@ -1,7 +1,7 @@
 //We need to create a custom implementation of Promise.any
 //Promise.any takes an array of promises in argument and returns the promise that resolves first.
 //if no promises resolves, all rejected promises are returned as aggregate error 
-Promise.customPromiseAny = async function (arrayOfPromises) {
+Promise.customPromiseAny =  function (arrayOfPromises) {
   let resultArray = [];
   let noOfRejectedPromises = 0;
   const p = new Promise((resolve, reject) => {

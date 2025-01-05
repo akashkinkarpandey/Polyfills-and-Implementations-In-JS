@@ -1,7 +1,7 @@
 //We are doing a polyfill for Promise.allSettled
 //It takes an array of promises as argument
 //It returns an array of promises of same length with their resolved or rejected values 
-Promise.customPromiseAllSettled = async function (arrayOfPromises) {
+Promise.customPromiseAllSettled = function (arrayOfPromises) {
   let resultArray = [];
   let noOfPromises = 0;
   const p = new Promise((resolve, reject) => {
