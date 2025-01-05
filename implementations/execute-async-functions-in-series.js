@@ -1,4 +1,3 @@
-const array=[]
 // function executeAsyncFunctionsInSeries(arrayOfAsyncTasks){
 //      This won;t work as forEach does not wait for async callback function to resolve the promise
 //     let count=0
@@ -11,20 +10,35 @@ const array=[]
 //             }
 //     })
 // }
-async function executeAsyncFunctionsInSeries(arrayOfAsyncTasks) {
-   try {
+async function executeAsyncFunctionsInSeries1(arrayOfAsyncTasks) {
+  try {
     let count = 0;
-    const array=[]
-    for(let individualAsyncTask of arrayOfAsyncTasks){
-         const resultOfIndividualAsyncTask=await individualAsyncTask;
-         array.push(resultOfIndividualAsyncTask);
+    const array = [];
+    for (let individualAsyncTask of arrayOfAsyncTasks) {
+      const resultOfIndividualAsyncTask = await individualAsyncTask;
+      array.push(resultOfIndividualAsyncTask);
     }
-    console.log('Output of serial processing of async functions');
+    console.log("Output of serial processing of async functions");
     console.log(array);
-   } catch (error) {
+  } catch (error) {
     console.log(error);
-   }
- }
+  }
+}
+async function executeAsyncFunctionsInSeries2(arrayOfAsyncTasks) {
+  const result = [];
+  const results = await arrayOfAsyncTasks.reduce(
+    async (accumulatorPromise, currentTask) => {
+      const accumulatedResults = await accumulatorPromise;
+      const currentResult = await currentTask;
+      result.push(currentResult);
+      return [...accumulatedResults, currentResult];
+    },
+    Promise.resolve([])
+  );
+  console.log(results);
+  console.log(result);
+}
+
 function resolveOnlyPromise(afterSeconds) {
   const p = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -39,5 +53,4 @@ const allToBeResolvedPromises = [
   resolveOnlyPromise(5),
   resolveOnlyPromise(4),
 ];
-executeAsyncFunctionsInSeries(allToBeResolvedPromises);
-
+executeAsyncFunctionsInSeries2(allToBeResolvedPromises);
