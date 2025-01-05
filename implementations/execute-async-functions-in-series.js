@@ -38,8 +38,18 @@ async function executeAsyncFunctionsInSeries2(arrayOfAsyncTasks) {
   console.log(results);
   console.log(result);
 }
-
-function resolveOnlyPromise(afterSeconds) {
+let resultforRecursiveAsyncProcessing=[]
+async function executeAsyncFunctionsInSeries3(arrayOfAsyncTasks) {
+  if(arrayOfAsyncTasks.length ==0){
+      console.log(resultforRecursiveAsyncProcessing);
+      return;
+  }
+  const individualAsyncTask=arrayOfAsyncTasks.shift(); 
+  const resultOfIndividualAsyncTask=await individualAsyncTask;
+  resultforRecursiveAsyncProcessing.push(resultOfIndividualAsyncTask);
+  executeAsyncFunctionsInSeries3(arrayOfAsyncTasks)
+}
+function resolveOnlyPromise(afterSeconds){
   const p = new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(`Resolved after ${afterSeconds} seconds`);
@@ -53,4 +63,8 @@ const allToBeResolvedPromises = [
   resolveOnlyPromise(5),
   resolveOnlyPromise(4),
 ];
+console.log(`Execution started`);
+executeAsyncFunctionsInSeries1(allToBeResolvedPromises);
 executeAsyncFunctionsInSeries2(allToBeResolvedPromises);
+executeAsyncFunctionsInSeries3(allToBeResolvedPromises);
+
