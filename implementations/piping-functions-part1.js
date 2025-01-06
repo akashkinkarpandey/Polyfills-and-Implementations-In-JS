@@ -3,8 +3,7 @@
 //way 1
 function first(obj) {
   return function (...argumentsToFunctionInObj) {
-    for (const key in obj) {
-      const value = obj[key];
+    for (const [key,value] of Object.entries(obj)) {
       if (typeof value === "function") {
         obj[key] = value(...argumentsToFunctionInObj);
       } else {
@@ -29,15 +28,12 @@ console.log(first(obj1)(1, 1, 1));//gives same output as previous as original ob
 function returnComputedObject(...allArguments){
     const obj=allArguments[0]
     const argumentsToFunctionInObj=allArguments.slice(1)
-    for (const key in obj) {
-        const value = obj[key];
-        if(typeof value==='function'){
-            obj[key] = value(...argumentsToFunctionInObj);
-        }
-        else{
-            obj[key] = returnComputedObject(value,
-                ...argumentsToFunctionInObj);
-        }
+    for (const [key, value] of Object.entries(obj)) {
+      if (typeof value === "function") {
+        obj[key] = value(...argumentsToFunctionInObj);
+      } else {
+        obj[key] = returnComputedObject(value, ...argumentsToFunctionInObj);
+      }
     }
     return obj;
 }
