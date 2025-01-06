@@ -5,11 +5,13 @@ const obj = {
 function printDetails(city, state) {
   console.log(`${this.fname} ${this.lname} ${city} ${state}`);
 }
-printDetails.call(obj, "Kolkata");
+printDetails.call(obj, "Kolkata","West Bengal");
 
 Function.prototype.myCall = function (...args1) {
   let callThisFunction = this;
-  callThisFunction(...args1);
+  let callerObject=args1[0]
+  let argumentsToBePassed=args1.slice(1)
+  callerObject.func = callThisFunction;
+  callerObject.func(...argumentsToBePassed);
 };
-const refPrintDetails2 = printDetails.myCall(obj, "Kolkata");
-refPrintDetails2("West Bengal");
+printDetails.myCall(obj, "Kolkata","West Bengal");
