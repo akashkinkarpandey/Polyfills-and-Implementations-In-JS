@@ -1,0 +1,1 @@
+Collection of different Javascript problems,implementations and polyfills
